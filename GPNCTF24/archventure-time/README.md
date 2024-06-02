@@ -1,0 +1,14 @@
+- ghidra reads the rejection function correctly as 0x14a9, IDA reads wrongly as 0x14a8
+- Reqts:
+-> At least 23 chars
+-> chars at i (1 indexing) % 6 == 0 must be -
+-> Valid format example: 12345-12345-12345-12345
+-> main then strips the dashes and stores in another variable
+-> execution of command qemu-riscv64 -L /usr/riscv64-linux-gnu 
+-> snprintf(s, 0x80uLL, "%s %s %s", v5, templatea, dashes_stripped_string)
+-> arg1: RDI, arg2: RSI, arg3: RDX, arg4: R8, arg5: R9
+-> First command: qemu-riscv64 -L /usr/riscv64-linux-gnu checkrYh63Q 12345123451234512345
+-> Second command: qemu-x86_64 checkrYh63Q 12345123451234512345
+-> Third command: qemu-ppc64 -L /usr/powerpc64-linux-gnu checkrYh63Q 12345123451234512345
+-> Fourth command: qemu-aarch64 -L /usr/aarch64-linux-gnu checkrYh63Q 12345123451234512345
+-> Use Z3 to satisfy the constraints imposed by the 4 binary files

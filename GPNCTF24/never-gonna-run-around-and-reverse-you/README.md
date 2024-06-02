@@ -1,0 +1,1 @@
+- Reverse the hashing function and decrypt the hash.
